@@ -1,0 +1,40 @@
+const Discord = require('discord.js');
+
+exports.run = (client, message, args) => {
+  
+     if(!message.member.permissions.has('MANAGE_MESSAGES')) {
+    const embed = new Discord.MessageEmbed()
+      .setDescription(`**Ne yazık ki bu komutu kullanmaya yetkin yok.**`)
+    message.channel.send(embed);
+    return;
+  }
+
+  let mesaj = args.slice(0).join(' ');
+
+if (mesaj.length < 1) return message.reply('Yazmam için herhangi bir şey yazmalısın.');
+
+  message.delete();
+
+  message.channel.send(mesaj);
+
+};
+
+exports.conf = {
+
+  aliases: ['say', 'söyle'],
+
+  permLevel: 0,
+
+  kategori: 'Genel'
+
+};
+
+exports.help = {
+
+  name: 'yaz',
+
+  description: 'İstediğiniz şeyi bota yazdırır.',
+
+  usage: 'yaz [yazdırmak istediğiniz şey]'
+
+};

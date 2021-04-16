@@ -1,0 +1,47 @@
+const discord = require('discord.js');
+
+const db = require("quick.db");
+
+exports.run = async(client, message, args) => {
+  
+let enginar = message.mentions.channels.first()
+
+if(!enginar) return message.channel.send('Lütfen bir kanal belirt!')
+
+db.set(`bbmesaj_${message.guild.id}`, enginar.id)
+
+const embed = new discord.MessageEmbed()
+
+.setTitle('Başarılı!')
+
+.setDescription(`Görüşürüz mesajı kanalı başarılı ile <#${enginar.id}> olarak ayarlandı!`)
+
+return message.channel.send(embed)
+
+};
+
+exports.conf = {
+
+    enabled: true,  
+
+    guildOnly: false, 
+
+    aliases: [], 
+
+    permLevel: 0
+
+  };
+
+  
+
+  exports.help = {
+
+    name: 'bb-mesajı',
+
+    description: 'taslak', 
+
+    usage: 'captcha'
+
+  };
+
+  
